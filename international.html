@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="catalog.css">
+  <title>國外旅遊｜鴻富旅行社</title>
+</head>
+<body data-page="international">
+  <div class="top-note">示範網站｜價格、日期與行程正式上線前請由鴻富確認</div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/hongfu-logo.gif" alt="鴻富旅遊"></a>
+      <nav class="nav-links" id="navLinks">
+        <a data-nav="domestic" href="domestic.html">國內旅遊</a>
+        <a data-nav="international" href="international.html">國外旅遊</a>
+        <a data-nav="free" href="free-travel.html">四國自由行</a>
+        <a data-nav="transport" href="transport.html">接送包車</a>
+        <a class="nav-cta" href="index.html#inquiry">開始規劃</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="開啟選單">☰</button>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="container hero-copy">
+        <div class="crumbs"><a href="index.html">首頁</a> ／ <span>行程分類</span></div>
+        <p class="eyebrow" id="heroEyebrow"></p>
+        <h1 id="pageTitle"></h1>
+        <p id="pageLead"></p>
+      </div>
+    </section>
+    <div class="page-tabs">
+      <div class="container tab-grid">
+        <a class="page-tab" href="domestic.html">國內旅遊</a>
+        <a class="page-tab active" href="international.html">國外旅遊</a>
+        <a class="page-tab" href="free-travel.html">四國自由行</a>
+        <a class="page-tab" href="transport.html">接送＋包車</a>
+      </div>
+    </div>
+    <section class="catalog">
+      <div class="container">
+        <div class="catalog-head">
+          <div><h2 id="catalogHeading"></h2><p>可依關鍵字、國家與類型篩選；正式航班與供應內容待確認。</p></div>
+          <span class="source-note" id="sourceNote"></span>
+        </div>
+        <div class="country-quick" id="countryQuick" aria-label="快速選擇國家"></div>
+        <div class="filters">
+          <div class="filter-field"><label for="searchInput">搜尋</label><input id="searchInput" type="search" placeholder="搜尋國家、城市或行程"></div>
+          <div class="filter-field"><label for="placeFilter">國家</label><select id="placeFilter"></select></div>
+          <div class="filter-field"><label for="categoryFilter">類型</label><select id="categoryFilter"></select></div>
+          <span class="result-count" id="resultCount"></span>
+        </div>
+        <div class="trip-grid" id="tripGrid">
+          <div class="empty" id="emptyState"><h3>找不到符合的行程</h3><p>請調整搜尋條件，或直接提出客製需求。</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <section class="cta-band"><div class="container cta-inner"><div><h2>想去其他國家？</h2><p>先留下大致日期與旅遊偏好，專人協助確認。</p></div><a class="btn" href="index.html#inquiry">提出旅遊需求</a></div></section>
+  <footer>
+    <div class="container">
+      <div class="footer-row"><div><a class="brand" href="index.html"><img class="brand-logo" src="assets/hongfu-logo.gif" alt="鴻富旅遊"></a><p class="footer-copy">韓國、日本、泰國、台灣自由行，以及國內外團體旅遊、接送與包車服務。</p></div><div class="footer-links"><a href="domestic.html">國內旅遊</a><a href="international.html">國外旅遊</a><a href="free-travel.html">自由行</a><a href="transport.html">接送包車</a></div></div>
+      <div class="copyright">© 2026 鴻富國際旅行社｜示範網站</div>
+    </div>
+  </footer>
+  <script src="travel-data.js"></script>
+  <script src="catalog.js"></script>
+</body>
+</html>

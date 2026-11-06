@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="鴻富旅行社自由行服務示範網站：韓國、日本、泰國、台灣機場接送、行程包車與客製行程。">
+  <title>鴻富旅行社｜自由行接送・包車・行程規劃</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #14324a;
+      --navy-2: #0b2438;
+      --blue: #197f9b;
+      --mint: #dff2ed;
+      --coral: #ef725f;
+      --coral-dark: #d85b48;
+      --sand: #f7f3ec;
+      --cream: #fcfaf6;
+      --ink: #1d2a34;
+      --muted: #667781;
+      --line: #dce4e6;
+      --white: #fff;
+      --shadow: 0 16px 42px rgba(15, 44, 62, .10);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--cream); font-family: "Noto Sans TC", sans-serif; line-height: 1.7; }
+    body.locked { overflow: hidden; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow { margin: 0 0 10px; color: var(--coral-dark); font-weight: 800; font-size: .78rem; letter-spacing: .08em; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { color: var(--navy); line-height: 1.25; }
+    h2 { margin-bottom: 14px; font-size: clamp(2rem, 4vw, 3.1rem); letter-spacing: -.04em; }
+    .section-lead { max-width: 650px; margin-bottom: 34px; color: var(--muted); font-size: 1.03rem; }
+    .section { padding: 100px 0; }
+    .section-soft { background: var(--sand); }
+    .btn { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 9px; padding: 0 22px; border: 1px solid transparent; border-radius: 10px; cursor: pointer; font-weight: 700; transition: .22s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #fff; background: var(--coral); box-shadow: 0 11px 26px rgba(239,114,95,.26); }
+    .btn-primary:hover { background: var(--coral-dark); }
+    .btn-secondary { color: var(--navy); background: #fff; border-color: rgba(20,50,74,.15); }
+    .btn-secondary:hover { border-color: var(--navy); }
+    .btn-dark { color: #fff; background: var(--navy); }
+    .btn-small { min-height: 42px; padding: 0 17px; font-size: .9rem; }
+    .arrow { font-size: 1.2em; }
+
+    .top-note { padding: 7px 16px; color: #fff; background: var(--navy-2); text-align: center; font-size: .79rem; }
+    header { position: sticky; z-index: 50; top: 0; background: rgba(252,250,246,.94); border-bottom: 1px solid rgba(20,50,74,.08); backdrop-filter: blur(14px); }
+    .nav { display: flex; height: 76px; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: flex; align-items: center; gap: 11px; color: var(--navy); font-weight: 800; white-space: nowrap; }
+    .brand-mark { display: grid; width: 42px; height: 42px; place-items: center; color: #fff; background: var(--coral); border-radius: 13px 13px 13px 3px; font-family: "Plus Jakarta Sans", sans-serif; font-size: 1.15rem; box-shadow: 0 8px 18px rgba(239,114,95,.22); }
+    .brand-logo { width: 142px; height: 58px; object-fit: contain; }
+    .brand small { display: block; margin-top: -3px; color: var(--muted); font-size: .63rem; font-weight: 600; letter-spacing: .11em; }
+    .nav-links { display: flex; align-items: center; gap: 28px; color: #3f505c; font-size: .92rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--coral-dark); }
+    .menu-btn { display: none; width: 43px; height: 43px; border: 1px solid var(--line); border-radius: 13px; background: #fff; cursor: pointer; font-size: 1.25rem; }
+
+    .hero { position: relative; min-height: 720px; overflow: hidden; background: var(--navy); }
+    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,31,49,.94) 0%, rgba(8,31,49,.80) 42%, rgba(8,31,49,.22) 76%, rgba(8,31,49,.08) 100%), url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2000&q=85") center/cover; }
+    .hero::after { content: ""; position: absolute; right: -10%; bottom: -55%; width: 600px; height: 600px; border: 74px solid rgba(255,255,255,.055); border-radius: 50%; }
+    .hero-inner { position: relative; z-index: 2; display: grid; min-height: 720px; align-items: center; padding: 70px 0 92px; }
+    .hero-copy { max-width: 860px; color: #fff; }
+    .hero .eyebrow { color: #aee3d8; }
+    .hero h1 { max-width: 860px; margin-bottom: 24px; color: #fff; font-size: clamp(2.8rem, 5vw, 4.15rem); letter-spacing: -.055em; }
+    .hero h1 span { color: #ffd3c6; }
+    .hero-copy > p:not(.eyebrow) { max-width: 630px; margin-bottom: 30px; color: rgba(255,255,255,.82); font-size: clamp(1rem, 1.8vw, 1.18rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-actions .btn-secondary { color: #fff; background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.28); backdrop-filter: blur(10px); }
+    .hero-trust { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 34px; color: rgba(255,255,255,.77); font-size: .86rem; }
+    .hero-trust span::before { content: "✓"; margin-right: 7px; color: #8de0d1; font-weight: 800; }
+    .route-card { position: absolute; z-index: 3; right: 7%; bottom: 42px; width: 270px; padding: 18px; color: var(--navy); background: rgba(255,255,255,.92); border: 1px solid rgba(255,255,255,.55); border-radius: 16px; box-shadow: var(--shadow); backdrop-filter: blur(10px); }
+    .route-card small { color: var(--muted); font-weight: 600; }
+    .route-line { display: flex; align-items: center; gap: 12px; margin-top: 10px; font-weight: 800; }
+    .route-line i { flex: 1; height: 1px; background: repeating-linear-gradient(90deg,var(--coral) 0 5px,transparent 5px 10px); }
+
+    .destination-strip { position: relative; z-index: 4; margin-top: -42px; }
+    .destination-grid { display: grid; grid-template-columns: repeat(4,1fr); overflow: hidden; background: #fff; border-radius: 18px; box-shadow: var(--shadow); }
+    .destination-link { position: relative; min-height: 158px; overflow: hidden; cursor: pointer; border: 0; text-align: left; background: #ddd; }
+    .destination-link::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,transparent 20%,rgba(5,27,43,.8)); transition: .25s; }
+    .destination-link:hover::after { background: linear-gradient(180deg,rgba(239,114,95,.06),rgba(5,27,43,.88)); }
+    .destination-link img { height: 100%; min-height: 158px; object-fit: cover; transition: transform .45s; }
+    .destination-link:hover img { transform: scale(1.06); }
+    .destination-caption { position: absolute; z-index: 2; right: 18px; bottom: 15px; left: 18px; display: flex; align-items: end; justify-content: space-between; color: #fff; }
+    .destination-caption strong { font-size: 1.2rem; }
+    .destination-caption small { display: block; opacity: .75; font-size: .72rem; letter-spacing: .08em; }
+    .destination-caption b { display: grid; width: 32px; height: 32px; place-items: center; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; }
+
+    .portal-section { padding: 105px 0 82px; }
+    .portal-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 30px; }
+    .portal-head h2 { margin-bottom: 0; }
+    .portal-head p { max-width: 520px; margin: 0; color: var(--muted); }
+    .portal-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .portal-card { position: relative; display: flex; min-height: 240px; overflow: hidden; align-items: end; padding: 22px; color: #fff; background: var(--navy); border-radius: 16px; }
+    .portal-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,rgba(8,31,49,.05),rgba(8,31,49,.9)),var(--portal-image) center/cover; transition: .4s; }
+    .portal-card:hover::before { transform: scale(1.04); }
+    .portal-card > span { position: relative; z-index: 2; width: 100%; }
+    .portal-card small { display: block; margin-bottom: 4px; color: rgba(255,255,255,.7); font-size: .7rem; letter-spacing: .1em; }
+    .portal-card strong { display: flex; align-items: end; justify-content: space-between; gap: 10px; font-size: 1.15rem; }
+
+    .services-intro { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 70px; }
+    .service-stack { display: grid; gap: 14px; }
+    .service-row { display: grid; grid-template-columns: 62px 1fr auto; align-items: center; gap: 18px; padding: 20px; background: #fff; border: 1px solid var(--line); border-radius: 16px; transition: .2s; }
+    .service-row:hover { transform: translateX(5px); border-color: rgba(25,127,155,.35); box-shadow: 0 12px 32px rgba(20,50,74,.08); }
+    .service-icon { display: grid; width: 62px; height: 62px; place-items: center; color: var(--navy); background: var(--mint); border-radius: 18px; font-size: 1.6rem; }
+    .service-row h3 { margin: 0 0 3px; font-size: 1.08rem; }
+    .service-row p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .service-row .arrow { color: var(--coral); }
+
+    .filter-bar { display: flex; align-items: center; gap: 12px; margin: 32px 0 30px; padding: 14px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 30px rgba(20,50,74,.05); }
+    .filter-bar label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+    .select-wrap { position: relative; flex: 1; }
+    .select-wrap select { width: 100%; height: 48px; padding: 0 38px 0 14px; color: var(--ink); background: var(--sand); border: 0; border-radius: 9px; appearance: none; cursor: pointer; }
+    .select-wrap::after { content: "⌄"; position: absolute; top: 10px; right: 14px; color: var(--muted); pointer-events: none; }
+    .result-count { padding: 0 14px; color: var(--muted); white-space: nowrap; font-size: .88rem; }
+    .trip-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .trip-card { overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 16px; transition: .25s ease; }
+    .trip-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .trip-image { position: relative; height: 225px; overflow: hidden; background: #d9e2e4; }
+    .trip-image img { height: 100%; object-fit: cover; transition: .5s; }
+    .trip-card:hover .trip-image img { transform: scale(1.05); }
+    .tag { display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; color: var(--navy); background: #fff; border-radius: 8px; font-size: .72rem; font-weight: 800; }
+    .trip-image .tag { position: absolute; top: 15px; left: 15px; box-shadow: 0 7px 20px rgba(20,50,74,.15); }
+    .status { position: absolute; right: 15px; bottom: 14px; padding: 5px 10px; color: #fff; background: rgba(8,31,49,.82); border-radius: 8px; font-size: .7rem; font-weight: 700; backdrop-filter: blur(8px); }
+    .trip-body { padding: 22px; }
+    .trip-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; color: var(--blue); font-size: .78rem; font-weight: 700; }
+    .trip-body h3 { min-height: 54px; margin: 0 0 8px; font-size: 1.23rem; }
+    .trip-body p { min-height: 48px; margin-bottom: 18px; color: var(--muted); font-size: .88rem; }
+    .trip-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--line); }
+    .price-label small { display: block; color: var(--muted); font-size: .67rem; }
+    .price-label strong { color: var(--coral-dark); font-size: .98rem; }
+    .empty-state { display: none; grid-column: 1/-1; padding: 50px; background: #fff; border: 1px dashed #bdc9cc; border-radius: 24px; text-align: center; }
+
+    .feature-band { overflow: hidden; color: #fff; background: var(--navy); }
+    .feature-band .container { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .feature-copy { padding: 90px 70px 90px 0; }
+    .feature-copy h2 { color: #fff; }
+    .feature-copy .section-lead { color: rgba(255,255,255,.7); }
+    .mini-features { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 30px 0; }
+    .mini-feature { padding: 16px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; }
+    .mini-feature strong { display: block; margin-bottom: 3px; }
+    .mini-feature small { color: rgba(255,255,255,.62); }
+    .feature-visual { position: relative; min-height: 600px; }
+    .feature-visual img { position: absolute; width: calc(50vw); height: 100%; max-width: 760px; object-fit: cover; }
+    .vehicle-card { position: absolute; z-index: 2; right: -30px; bottom: 30px; left: 30px; padding: 20px; color: var(--ink); background: rgba(255,255,255,.94); border-radius: 20px; box-shadow: var(--shadow); backdrop-filter: blur(12px); }
+    .vehicle-card strong { color: var(--navy); }
+    .vehicle-specs { display: flex; gap: 8px; margin-top: 11px; }
+    .vehicle-specs span { padding: 5px 9px; color: var(--muted); background: var(--sand); border-radius: 8px; font-size: .75rem; }
+
+    .process { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-top: 44px; }
+    .process-step { position: relative; padding: 26px 22px; background: #fff; border: 1px solid var(--line); border-radius: 14px; }
+    .process-step:not(:last-child)::after { content: ""; position: absolute; z-index: 2; top: 42px; right: -28px; width: 36px; border-top: 2px dotted #adc3c8; }
+    .step-num { display: grid; width: 36px; height: 36px; margin-bottom: 20px; place-items: center; color: #fff; background: var(--coral); border-radius: 12px 12px 12px 3px; font-weight: 800; }
+    .process-step h3 { margin-bottom: 8px; font-size: 1.05rem; }
+    .process-step p { margin: 0; color: var(--muted); font-size: .86rem; }
+
+    .inquiry-section { position: relative; overflow: hidden; background: var(--mint); }
+    .inquiry-section::before { content: ""; position: absolute; top: -160px; right: -120px; width: 420px; height: 420px; border: 72px solid rgba(25,127,155,.09); border-radius: 50%; }
+    .inquiry-wrap { position: relative; display: grid; grid-template-columns: .75fr 1.25fr; align-items: start; gap: 60px; }
+    .contact-list { display: grid; gap: 13px; margin-top: 28px; }
+    .contact-item { display: flex; gap: 13px; align-items: flex-start; }
+    .contact-item b { display: grid; width: 34px; height: 34px; flex: 0 0 auto; place-items: center; color: var(--navy); background: rgba(255,255,255,.7); border-radius: 10px; }
+    .contact-item strong { display: block; color: var(--navy); font-size: .83rem; }
+    .contact-item span { color: #48636d; font-size: .87rem; }
+    .form-card { padding: 34px; background: #fff; border: 1px solid rgba(20,50,74,.06); border-radius: 18px; box-shadow: var(--shadow); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1/-1; }
+    .field label { color: var(--navy); font-size: .78rem; font-weight: 700; }
+    .field input, .field select, .field textarea { width: 100%; padding: 12px 13px; color: var(--ink); background: #fafafa; border: 1px solid var(--line); border-radius: 11px; outline: none; transition: .2s; }
+    .field input:focus, .field select:focus, .field textarea:focus { background: #fff; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(25,127,155,.1); }
+    .field textarea { min-height: 105px; resize: vertical; }
+    .form-actions { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 22px; }
+    .form-note { max-width: 320px; margin: 0; color: var(--muted); font-size: .72rem; }
+    .success { display: none; padding: 65px 25px; text-align: center; }
+    .success-icon { display: grid; width: 72px; height: 72px; margin: 0 auto 20px; place-items: center; color: #fff; background: var(--blue); border-radius: 50%; font-size: 2rem; }
+    .success h3 { font-size: 1.55rem; }
+    .success p { color: var(--muted); }
+
+    footer { padding: 55px 0 25px; color: rgba(255,255,255,.69); background: var(--navy-2); border-top: 0; }
+    .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 50px; padding-bottom: 40px; }
+    footer .brand { display: inline-flex; width: fit-content; padding: 0; color: #fff; background: transparent; border: 0; border-radius: 0; box-shadow: none; }
+    footer .brand-logo { content: url("assets/hongfu-logo-transparent.png"); filter: brightness(1.65) saturate(1.08) drop-shadow(0 1px 1px rgba(255,255,255,.16)); }
+    footer p { max-width: 460px; margin: 18px 0 0; font-size: .85rem; }
+    footer h3 { margin-bottom: 14px; color: #fff; font-size: .9rem; }
+    .footer-links { display: grid; gap: 8px; font-size: .84rem; }
+    .footer-links { color: rgba(255,255,255,.78); }
+    .footer-links a:hover { color: #fff; }
+    .copyright { display: flex; justify-content: space-between; gap: 20px; padding-top: 20px; color: rgba(255,255,255,.52); border-top: 1px solid rgba(255,255,255,.1); font-size: .72rem; }
+
+    .modal { position: fixed; z-index: 100; inset: 0; display: none; align-items: center; justify-content: center; padding: 22px; background: rgba(4,23,36,.75); backdrop-filter: blur(8px); }
+    .modal.open { display: flex; }
+    .modal-panel { position: relative; width: min(900px,100%); max-height: 90vh; overflow: auto; background: var(--cream); border-radius: 28px; box-shadow: 0 25px 80px rgba(0,0,0,.28); }
+    .modal-close { position: sticky; z-index: 5; top: 16px; float: right; width: 42px; height: 42px; margin: 16px 16px -58px 0; color: var(--navy); background: rgba(255,255,255,.93); border: 0; border-radius: 50%; cursor: pointer; font-size: 1.4rem; box-shadow: 0 7px 20px rgba(0,0,0,.15); }
+    .modal-hero { position: relative; height: 340px; overflow: hidden; }
+    .modal-hero img { height: 100%; object-fit: cover; }
+    .modal-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,transparent 30%,rgba(5,28,43,.85)); }
+    .modal-title { position: absolute; z-index: 2; right: 40px; bottom: 32px; left: 40px; color: #fff; }
+    .modal-title .eyebrow { color: #b5eadf; }
+    .modal-title h2 { margin: 0; color: #fff; font-size: clamp(1.7rem,4vw,2.7rem); }
+    .modal-content { padding: 36px 40px 42px; }
+    .modal-summary { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 32px; }
+    .summary-box { padding: 14px; background: #fff; border: 1px solid var(--line); border-radius: 14px; }
+    .summary-box small { display: block; color: var(--muted); font-size: .68rem; }
+    .summary-box strong { color: var(--navy); }
+    .detail-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 30px; }
+    .detail-grid h3 { margin: 25px 0 12px; font-size: 1.1rem; }
+    .detail-grid h3:first-child { margin-top: 0; }
+    .detail-grid p, .detail-grid li { color: var(--muted); font-size: .88rem; }
+    .timeline { display: grid; gap: 13px; }
+    .day { padding: 18px; background: #fff; border-left: 4px solid var(--coral); border-radius: 0 14px 14px 0; }
+    .day strong { display: block; margin-bottom: 6px; color: var(--navy); }
+    .day p { margin: 0; }
+    .detail-note { padding: 20px; background: var(--mint); border-radius: 16px; }
+    .detail-note p:last-child { margin-bottom: 0; }
+    .modal-actions { position: sticky; bottom: 0; display: flex; align-items: center; justify-content: space-between; gap: 15px; margin: 32px -40px -42px; padding: 18px 40px; background: rgba(252,250,246,.95); border-top: 1px solid var(--line); backdrop-filter: blur(10px); }
+    .modal-actions small { color: var(--muted); }
+
+    @media (max-width: 980px) {
+      .nav-links { position: fixed; top: 108px; right: 20px; left: 20px; display: none; align-items: stretch; padding: 20px; background: #fff; border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); }
+      .nav-links.open { display: grid; }
+      .nav-links .btn { margin-top: 5px; }
+      .menu-btn { display: block; }
+      .hero::before { background: linear-gradient(90deg,rgba(8,31,49,.94),rgba(8,31,49,.67)),url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1500&q=85") center/cover; }
+      .route-card { display: none; }
+      .services-intro, .inquiry-wrap { grid-template-columns: 1fr; gap: 35px; }
+      .portal-grid { grid-template-columns: 1fr 1fr; }
+      .trip-grid { grid-template-columns: repeat(2,1fr); }
+      .feature-copy { padding-right: 35px; }
+      .process { grid-template-columns: 1fr 1fr; }
+      .process-step::after { display: none; }
+    }
+    @media (max-width: 720px) {
+      .container { width: min(100% - 28px, 1160px); }
+      .section { padding: 72px 0; }
+      .top-note { font-size: .68rem; }
+      .nav { height: 68px; }
+      .brand small { display: none; }
+      .brand-logo { width: 112px; height: 48px; }
+      .hero, .hero-inner { min-height: 650px; }
+      .hero-inner { padding: 40px 0 85px; }
+      .hero h1 { font-size: clamp(2.5rem,11vw,3.4rem); }
+      .hero-actions { display: grid; }
+      .hero-actions .btn { width: 100%; }
+      .hero-trust { gap: 8px 15px; }
+      .destination-strip { margin-top: -30px; }
+      .destination-grid { grid-template-columns: 1fr 1fr; border-radius: 18px; }
+      .destination-link, .destination-link img { min-height: 134px; }
+      .portal-section { padding: 72px 0 55px; }
+      .portal-head { align-items: flex-start; flex-direction: column; }
+      .portal-grid { grid-template-columns: 1fr; }
+      .portal-card { min-height: 190px; }
+      .service-row { grid-template-columns: 52px 1fr auto; padding: 15px; }
+      .service-icon { width: 52px; height: 52px; }
+      .filter-bar { display: grid; grid-template-columns: 1fr 1fr; }
+      .result-count { grid-column: 1/-1; }
+      .trip-grid { grid-template-columns: 1fr; }
+      .trip-body h3, .trip-body p { min-height: 0; }
+      .feature-band .container { grid-template-columns: 1fr; width: 100%; }
+      .feature-copy { padding: 72px 20px; }
+      .feature-visual { min-height: 440px; }
+      .feature-visual img { width: 100%; max-width: none; }
+      .vehicle-card { right: 14px; bottom: 14px; left: 14px; }
+      .mini-features { grid-template-columns: 1fr; }
+      .process { grid-template-columns: 1fr; }
+      .form-card { padding: 23px 18px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .form-actions { align-items: stretch; flex-direction: column; }
+      .form-actions .btn { width: 100%; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .copyright { flex-direction: column; }
+      .modal { padding: 0; }
+      .modal-panel { width: 100%; max-height: 100vh; height: 100%; border-radius: 0; }
+      .modal-hero { height: 290px; }
+      .modal-title { right: 22px; bottom: 22px; left: 22px; }
+      .modal-content { padding: 25px 20px 35px; }
+      .modal-summary { grid-template-columns: 1fr; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .modal-actions { margin: 28px -20px -35px; padding: 14px 20px; }
+      .modal-actions small { display: none; }
+      .modal-actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-note">第一版互動示範網站｜行程、價格與聯絡資料正式上線前請由鴻富確認</div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="回到首頁">
+        <img class="brand-logo" src="assets/hongfu-logo.gif" alt="鴻富旅遊">
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="主要選單">
+        <a href="domestic.html">國內旅遊</a>
+        <a href="international.html">國外旅遊</a>
+        <a href="free-travel.html">四國自由行</a>
+        <a href="transport.html">接送包車</a>
+        <a class="btn btn-primary btn-small" href="#inquiry">開始規劃</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="開啟選單" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">韓國・日本・泰國・台灣自由行服務</p>
+          <h1>自由行的每一段交通與行程，<span>鴻富幫你安排</span></h1>
+          <p>從落地接機、城市包車到專屬旅行路線，一次說明你的需求，讓熟悉在地的團隊把旅程接起來。</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#inquiry">開始規劃行程 <span class="arrow">→</span></a>
+            <a class="btn btn-secondary" href="#destinations">瀏覽熱門行程</a>
+          </div>
+          <div class="hero-trust"><span>四大目的地服務</span><span>行程彈性搭配</span><span>專人回覆需求</span></div>
+        </div>
+      </div>
+      <div class="route-card" aria-hidden="true">
+        <small>下一段旅程</small>
+        <div class="route-line"><span>TPE</span><i></i><span>SEL</span></div>
+        <small>接機、包車、行程，一次安排</small>
+      </div>
+    </section>
+
+    <section class="destination-strip" aria-labelledby="destination-quick-title">
+      <h2 id="destination-quick-title" hidden>快速選擇目的地</h2>
+      <div class="container destination-grid">
+        <button class="destination-link" data-quick-destination="韓國">
+          <img src="https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=800&q=80" alt="韓國首爾城市風景">
+          <span class="destination-caption"><span><small>KOREA</small><strong>韓國</strong></span><b>↗</b></span>
+        </button>
+        <button class="destination-link" data-quick-destination="日本">
+          <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=800&q=80" alt="日本京都街道風景">
+          <span class="destination-caption"><span><small>JAPAN</small><strong>日本</strong></span><b>↗</b></span>
+        </button>
+        <button class="destination-link" data-quick-destination="泰國">
+          <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80" alt="泰國寺廟風景">
+          <span class="destination-caption"><span><small>THAILAND</small><strong>泰國</strong></span><b>↗</b></span>
+        </button>
+        <button class="destination-link" data-quick-destination="台灣">
+          <img src="https://images.unsplash.com/photo-1470004914212-05527e49370b?auto=format&fit=crop&w=800&q=80" alt="台灣山林風景">
+          <span class="destination-caption"><span><small>TAIWAN</small><strong>台灣</strong></span><b>↗</b></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="portal-section" aria-labelledby="portal-title">
+      <div class="container">
+        <div class="portal-head"><div><p class="eyebrow">依旅行方式選擇</p><h2 id="portal-title">先選一種旅行方式</h2></div><p>每個分類都有獨立頁面，可依關鍵字、目的地與行程類型搜尋。</p></div>
+        <div class="portal-grid">
+          <a class="portal-card" href="domestic.html" style="--portal-image:url('https://images.unsplash.com/photo-1470004914212-05527e49370b?auto=format&fit=crop&w=900&q=80')"><span><small>TAIWAN JOURNEYS</small><strong>國內旅遊 <b>↗</b></strong></span></a>
+          <a class="portal-card" href="international.html" style="--portal-image:url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80')"><span><small>OVERSEAS TOURS</small><strong>國外旅遊 <b>↗</b></strong></span></a>
+          <a class="portal-card" href="free-travel.html" style="--portal-image:url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80')"><span><small>KOREA · JAPAN · THAILAND · TAIWAN</small><strong>四國自由行 <b>↗</b></strong></span></a>
+          <a class="portal-card" href="transport.html" style="--portal-image:url('https://images.unsplash.com/photo-1483450388369-9ed95738483c?auto=format&fit=crop&w=900&q=80')"><span><small>TRANSFER & CHARTER</small><strong>接送＋行程包車 <b>↗</b></strong></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container services-intro">
+        <div>
+          <p class="eyebrow">選擇服務方式</p>
+          <h2>先選你需要的服務，再慢慢決定去哪裡</h2>
+          <p class="section-lead">不用先把所有細節想好。告訴我們人數、日期與大致方向，就能從單程接送一路搭配到完整旅程。</p>
+          <a class="btn btn-secondary" href="#inquiry">讓專人協助選擇</a>
+        </div>
+        <div class="service-stack">
+          <a class="service-row" href="#airport">
+            <span class="service-icon">✈</span><span><h3>機場接送</h3><p>航班銜接、市區或飯店點對點接送</p></span><span class="arrow">→</span>
+          </a>
+          <a class="service-row" href="#charter">
+            <span class="service-icon">▰</span><span><h3>當地行程包車</h3><p>家庭、多人大行李，彈性安排停留時間</p></span><span class="arrow">→</span>
+          </a>
+          <a class="service-row" href="#destinations">
+            <span class="service-icon">⌖</span><span><h3>一日・多日行程</h3><p>參考既有路線，也能依喜好客製調整</p></span><span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="destinations">
+      <div class="container">
+        <p class="eyebrow">精選行程</p>
+        <h2>從想去的地方開始</h2>
+        <p class="section-lead">示範資料可由後台替換。未確認價格與日期的行程皆以「洽詢報價」或「行程規劃中」呈現。</p>
+
+        <div class="filter-bar" aria-label="行程篩選">
+          <label for="destinationFilter">目的地</label>
+          <span class="select-wrap"><select id="destinationFilter"><option value="all">所有目的地</option><option>韓國</option><option>日本</option><option>泰國</option><option>台灣</option></select></span>
+          <label for="typeFilter">服務類型</label>
+          <span class="select-wrap"><select id="typeFilter"><option value="all">所有服務</option><option>機場接送</option><option>一日包車</option><option>多日包車</option><option>固定行程</option><option>客製行程</option></select></span>
+          <label for="dayFilter">旅遊天數</label>
+          <span class="select-wrap"><select id="dayFilter"><option value="all">所有天數</option><option value="1">1 日</option><option value="2">2 日</option><option value="3+">3 日以上</option></select></span>
+          <span class="result-count" id="resultCount">共 6 個行程</span>
+        </div>
+
+        <div class="trip-grid" id="tripGrid">
+          <article class="trip-card" data-destination="台灣" data-type="多日包車" data-days="2">
+            <div class="trip-image"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="南投山林與茶園"><span class="tag">台灣・南投</span><span class="status">舊站內容示範</span></div>
+            <div class="trip-body"><div class="trip-meta">2 天 1 夜 · 多日包車</div><h3>南投茶園森林・杉林溪二日</h3><p>走訪八卦茶園、銀杏林與杉林溪，感受山林、茶香與季節景致。</p><div class="trip-footer"><span class="price-label"><small>費用</small><strong>洽詢報價</strong></span><button class="btn btn-dark btn-small detail-btn" data-trip="nantou" onclick="openTrip('nantou')">查看行程</button></div></div>
+          </article>
+          <article class="trip-card" data-destination="韓國" data-type="客製行程" data-days="3+">
+            <div class="trip-image"><img src="https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=900&q=80" alt="韓國首爾街景"><span class="tag">韓國・首爾</span><span class="status">行程規劃中</span></div>
+            <div class="trip-body"><div class="trip-meta">3–5 日 · 客製行程</div><h3>首爾城市散策・近郊包車提案</h3><p>經典街區、購物美食與近郊景點，可依航班與喜好彈性安排。</p><div class="trip-footer"><span class="price-label"><small>費用</small><strong>洽詢報價</strong></span><button class="btn btn-dark btn-small detail-btn" data-trip="seoul" onclick="openTrip('seoul')">查看行程</button></div></div>
+          </article>
+          <article class="trip-card" data-destination="日本" data-type="一日包車" data-days="1">
+            <div class="trip-image"><img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80" alt="日本京都傳統街道"><span class="tag">日本・關西</span><span class="status">行程規劃中</span></div>
+            <div class="trip-body"><div class="trip-meta">1 日 · 一日包車</div><h3>京都古都・嵐山一日包車</h3><p>適合家庭與多人同行，示範串連古寺、老街與嵐山的自在路線。</p><div class="trip-footer"><span class="price-label"><small>費用</small><strong>洽詢報價</strong></span><button class="btn btn-dark btn-small detail-btn" data-trip="kyoto" onclick="openTrip('kyoto')">查看行程</button></div></div>
+          </article>
+          <article class="trip-card" data-destination="泰國" data-type="一日包車" data-days="1">
+            <div class="trip-image"><img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=900&q=80" alt="泰國曼谷寺廟"><span class="tag">泰國・曼谷</span><span class="status">行程規劃中</span></div>
+            <div class="trip-body"><div class="trip-meta">1 日 · 一日包車</div><h3>曼谷經典寺廟・河岸散策</h3><p>在城市節奏與河岸風景間自由停留，適合第一次造訪曼谷的旅客。</p><div class="trip-footer"><span class="price-label"><small>費用</small><strong>洽詢報價</strong></span><button class="btn btn-dark btn-small detail-btn" data-trip="bangkok" onclick="openTrip('bangkok')">查看行程</button></div></div>
+          </article>
+          <article class="trip-card" data-destination="台灣" data-type="固定行程" data-days="1">
+            <div class="trip-image"><img src="https://images.unsplash.com/photo-1552993873-0dd1110e025f?auto=format&fit=crop&w=900&q=80" alt="台灣山林道路"><span class="tag">台灣・新竹</span><span class="status">內容待確認</span></div>
+            <div class="trip-body"><div class="trip-meta">1 日 · 固定行程</div><h3>山上人家・茶園雲海一日遊</h3><p>參考舊站行程名稱建置；正式景點、出發日與服務內容待確認。</p><div class="trip-footer"><span class="price-label"><small>費用</small><strong>洽詢報價</strong></span><button class="btn btn-dark btn-small detail-btn" data-trip="hsinchu" onclick="openTrip('hsinchu')">查看行程</button></div></div>
+          </article>
+          <article class="trip-card" data-destination="日本" data-type="機場接送" data-days="1">
+            <div class="trip-image"><img src="https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?auto=format&fit=crop&w=900&q=80" alt="日本東京城市夜景"><span class="tag">日本・東京</span><span class="status">接送服務</span></div>
+            <div class="trip-body"><div class="trip-meta">單程 · 機場接送</div><h3>成田／羽田機場・東京市區接送</h3><p>依人數與行李安排合適車型，航班與服務範圍由專人確認。</p><div class="trip-footer"><span class="price-label"><small>費用</small><strong>洽詢報價</strong></span><button class="btn btn-dark btn-small inquire-service" data-service="機場接送" data-place="日本・東京">詢問接送</button></div></div>
+          </article>
+          <div class="empty-state" id="emptyState"><h3>目前沒有符合的示範行程</h3><p>調整篩選條件，或直接告訴我們想去的地方。</p><a class="btn btn-primary" href="#inquiry">提出客製需求</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-band" id="airport">
+      <div class="container">
+        <div class="feature-copy">
+          <p class="eyebrow">機場接送</p><h2>落地後，第一段路就安心</h2>
+          <p class="section-lead">提供韓國、日本、泰國、台灣主要機場與市區、飯店間的接送需求洽詢。專人會依航班、人數與行李數確認服務範圍及合適車型。</p>
+          <div class="mini-features">
+            <div class="mini-feature"><strong>航班資訊確認</strong><small>依抵達或離境時間安排</small></div>
+            <div class="mini-feature"><strong>車型彈性搭配</strong><small>轎車、休旅、多人座車示意</small></div>
+            <div class="mini-feature"><strong>行李需求先確認</strong><small>大型行李、嬰兒座椅可備註</small></div>
+            <div class="mini-feature"><strong>點對點接送</strong><small>服務範圍由專員回覆</small></div>
+          </div>
+          <button class="btn btn-primary inquire-service" data-service="機場接送" data-place="">詢問接送 <span class="arrow">→</span></button>
+        </div>
+        <div class="feature-visual">
+          <img src="https://images.unsplash.com/photo-1483450388369-9ed95738483c?auto=format&fit=crop&w=1200&q=85" alt="旅客在機場準備出發">
+          <div class="vehicle-card"><strong>車型建議（示意）</strong><div class="vehicle-specs"><span>舒適轎車 1–3 人</span><span>多人座車 4–8 人</span><span>行李依實際確認</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="charter">
+      <div class="container services-intro">
+        <div>
+          <p class="eyebrow">行程包車</p><h2>想停多久、去哪裡，由你決定</h2>
+          <p class="section-lead">包車特別適合家庭旅行、多人同行、行李較多，或希望避開大眾運輸轉乘的旅客。可從一日城市遊覽延伸到跨城市多日行程。</p>
+          <button class="btn btn-primary inquire-service" data-service="行程包車" data-place="">詢問包車</button>
+        </div>
+        <div class="service-stack">
+          <div class="service-row"><span class="service-icon">1D</span><span><h3>一日城市／近郊包車</h3><p>約定時數與接送範圍，景點順序可討論</p></span><span class="arrow">→</span></div>
+          <div class="service-row"><span class="service-icon">2D</span><span><h3>跨城市多日包車</h3><p>依住宿地點、行李與每日路線整體安排</p></span><span class="arrow">→</span></div>
+          <div class="service-row"><span class="service-icon">＋</span><span><h3>客製行程搭配</h3><p>將包車、接送與既有景點組合成完整旅程</p></span><span class="arrow">→</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="about">
+      <div class="container">
+        <p class="eyebrow">服務流程</p><h2>四個步驟，開始你的自由行</h2>
+        <p class="section-lead">示範版以「提出需求」為主，不產生真實訂單或付款。正式服務流程可再依鴻富實際作業調整。</p>
+        <div class="process">
+          <div class="process-step"><span class="step-num">1</span><h3>選目的地與服務</h3><p>從接送、包車或行程提案中找到方向。</p></div>
+          <div class="process-step"><span class="step-num">2</span><h3>留下旅行需求</h3><p>填寫日期、人數、航班與想去的景點。</p></div>
+          <div class="process-step"><span class="step-num">3</span><h3>專人確認細節</h3><p>依供應狀況回覆路線、車型與正式報價。</p></div>
+          <div class="process-step"><span class="step-num">4</span><h3>確認後安心出發</h3><p>正式上線後再串接訂單或付款流程。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section inquiry-section" id="inquiry">
+      <div class="container inquiry-wrap">
+        <div>
+          <p class="eyebrow">旅遊需求</p><h2>把想法交給我們，剩下的一起安排</h2>
+          <p class="section-lead">還不確定完整路線也沒關係。先說明旅遊日期與同行人數，鴻富專員將依需求與你聯繫。</p>
+          <div class="contact-list">
+            <div class="contact-item"><b>☎</b><span><strong>聯絡電話</strong><span>+886 2 2564 3329</span></span></div>
+            <div class="contact-item"><b>@</b><span><strong>Email</strong><span>goingtaiwan@gmail.com</span></span></div>
+            <div class="contact-item"><b>⌖</b><span><strong>地址</strong><span>台北市中山區民生東路一段42號10樓之3</span></span></div>
+          </div>
+        </div>
+        <div class="form-card">
+          <form id="inquiryForm">
+            <div class="form-grid">
+              <div class="field"><label for="name">姓名 *</label><input id="name" name="name" required placeholder="請輸入姓名"></div>
+              <div class="field"><label for="phone">聯絡電話 *</label><input id="phone" name="phone" required placeholder="例：0912-345-678"></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="name@example.com"></div>
+              <div class="field"><label for="destinationInput">目的地與城市 *</label><input id="destinationInput" name="destination" required placeholder="例：日本・大阪"></div>
+              <div class="field"><label for="serviceInput">服務類型 *</label><select id="serviceInput" name="service" required><option value="">請選擇</option><option>機場接送</option><option>行程包車</option><option>套裝行程</option><option>其他</option></select></div>
+              <div class="field"><label for="date">旅遊日期</label><input id="date" name="date" type="date"></div>
+              <div class="field"><label for="time">抵達／接送時間</label><input id="time" name="time" type="time"></div>
+              <div class="field"><label for="passengers">乘客人數</label><input id="passengers" name="passengers" type="number" min="1" placeholder="例：4"></div>
+              <div class="field"><label for="luggage">行李件數</label><input id="luggage" name="luggage" type="number" min="0" placeholder="例：3"></div>
+              <div class="field"><label for="pickup">航班資訊／接送地點</label><input id="pickup" name="pickup" placeholder="例：BR198／成田機場"></div>
+              <div class="field full"><label for="notes">想去的景點或備註</label><textarea id="notes" name="notes" placeholder="告訴我們期待的旅行方式、同行成員或其他需求"></textarea></div>
+            </div>
+            <div class="form-actions"><p class="form-note">此為示範表單，不會傳送或儲存個人資料。</p><button class="btn btn-primary" type="submit">送出需求 <span class="arrow">→</span></button></div>
+          </form>
+          <div class="success" id="successMessage"><div class="success-icon">✓</div><h3>已收到您的需求</h3><p>鴻富專員將與您聯繫。<br>（示範版不會實際傳送資料）</p><button class="btn btn-secondary" id="newInquiry">填寫另一筆需求</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><a class="brand" href="#top"><img class="brand-logo" src="assets/hongfu-logo.gif" alt="鴻富旅遊"></a><p>韓國、日本、泰國、台灣自由行服務。提供機場接送、行程包車與旅遊行程規劃，陪你把想去的地方串成一趟剛剛好的旅行。</p></div>
+        <div><h3>快速連結</h3><div class="footer-links"><a href="#destinations">目的地行程</a><a href="#airport">機場接送</a><a href="#charter">包車服務</a><a href="#inquiry">聯絡我們</a></div></div>
+        <div><h3>服務目的地</h3><div class="footer-links"><a href="#destinations">韓國</a><a href="#destinations">日本</a><a href="#destinations">泰國</a><a href="#destinations">台灣</a></div></div>
+      </div>
+      <div class="copyright"><span>© 2026 鴻富國際旅行社股份有限公司｜示範網站</span><span>圖片與移轉文字正式使用前，請確認授權及最新內容</span></div>
+    </div>
+  </footer>
+
+  <div class="modal" id="tripModal" role="dialog" aria-modal="true" aria-labelledby="modalTripTitle">
+    <div class="modal-panel">
+      <button class="modal-close" id="modalClose" aria-label="關閉行程詳情">×</button>
+      <div class="modal-hero"><img id="modalImage" src="" alt=""><div class="modal-title"><p class="eyebrow" id="modalLabel"></p><h2 id="modalTripTitle"></h2></div></div>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const tripDetails = {
+      nantou: {
+        title: '南投茶園森林・杉林溪二日', label: '台灣・南投｜舊站公開內容轉製示範', image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=85', days: '2 天 1 夜', type: '多日包車', people: '原內容為 6 人以上包團',
+        intro: '參考鴻富現有公開商品頁的內容結構與景點資訊製作。帶旅客走入南投茶園、銀杏林與杉林溪森林景觀；正式販售狀態、日期、住宿與費用仍需重新確認。',
+        itinerary: [
+          ['第 1 天｜茶園・銀杏林・溪頭', '台中集合 → 竹山文化園區 → 大崙山茶園與銀杏林 → 溪頭／妖怪村周邊 → 晚餐與住宿。實際時間、景點開放與住宿安排以正式回覆為準。'],
+          ['第 2 天｜杉林溪・八卦茶園', '早餐 → 杉林溪森林生態園區 → 大鞍竹海與八卦茶園 → 茶文化體驗 → 返回台中。實際回程依路況調整。']
+        ],
+        includes: '示範欄位：住宿與部分餐食、表列行程車資、行程所列部分門票或體驗、服務人員及旅行業責任保險。正式包含項目請以最新報價單為準。',
+        excludes: '示範欄位：未列餐食、個人消費、往返集合地交通、部分景點門票、小費及未提及費用。',
+        note: '山區天候與交通可能影響行程順序。建議穿著好走的鞋並攜帶雨具。集合點、取消規則、保險與成團條件，須於正式上線前由鴻富重新確認。'
+      },
+      seoul: { title:'首爾城市散策・近郊包車提案', label:'韓國・首爾｜行程規劃中', image:'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=1400&q=85', days:'3–5 日', type:'客製行程', people:'人數依車型確認', intro:'此為版型示範資料，可依航班、住宿地點與旅遊偏好規劃市區及近郊行程。正式景點、供應商與報價待鴻富補充。', itinerary:[['行程方向示意','首爾市區經典街區、購物與美食，可再搭配近郊一日包車。每日順序與停留時間皆為洽詢後安排。']], includes:'依最終確認的接送、包車與行程內容列示。', excludes:'機票、住宿、餐食、門票與個人消費等，依正式報價說明。', note:'本頁僅為視覺提案，不代表正式販售商品或保證供應。'},
+      kyoto: { title:'京都古都・嵐山一日包車', label:'日本・關西｜行程規劃中', image:'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1400&q=85', days:'1 日', type:'一日包車', people:'人數依車型確認', intro:'古都街區、寺院與嵐山自然風景的包車路線示意，適合親子、長輩或多人同行。', itinerary:[['路線方向示意','飯店接送 → 京都市區景點 → 嵐山周邊 → 返回指定地點。實際服務時數、行車範圍與停留點待確認。']], includes:'表列包車時數與司機服務；實際項目依正式報價。', excludes:'門票、餐食、停車、高速公路費及超時費等是否另計，待正式確認。', note:'本頁未引用正式價格、出發日期或供應商資訊。'},
+      bangkok: { title:'曼谷經典寺廟・河岸散策', label:'泰國・曼谷｜行程規劃中', image:'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=1400&q=85', days:'1 日', type:'一日包車', people:'人數依車型確認', intro:'以城市寺廟、老城與河岸為概念的一日包車示意，可依興趣改為美食、購物或親子路線。', itinerary:[['路線方向示意','飯店接送 → 曼谷老城／寺廟 → 河岸休憩 → 夜市或指定地點。景點服裝規定與營業狀況須再確認。']], includes:'表列包車時數與司機服務；實際項目依正式報價。', excludes:'門票、餐食、導覽、小費與其他個人消費。', note:'本頁僅為示範資料，正式行程內容與服務範圍待補。'},
+      hsinchu: { title:'山上人家・茶園雲海一日遊', label:'台灣・新竹｜舊站名稱參考', image:'https://images.unsplash.com/photo-1552993873-0dd1110e025f?auto=format&fit=crop&w=1400&q=85', days:'1 日', type:'固定行程', people:'適合人數待確認', intro:'依現有網站公開行程名稱建立版型，示意以森林農場、茶園步道與季節雲海為亮點。正式路線及是否仍販售需由鴻富確認。', itinerary:[['一日路線待確認','集合 → 山區景點與步道 → 午餐或自由活動 → 返回。正式景點順序、集合地與時間待補。']], includes:'交通、服務與保險等欄位待鴻富提供最新版內容。', excludes:'餐食、門票與個人消費等以正式說明為準。', note:'舊站曾顯示的價格、日期及額滿狀態均未沿用。'}
+    };
+
+    const destinationFilter = document.getElementById('destinationFilter');
+    const typeFilter = document.getElementById('typeFilter');
+    const dayFilter = document.getElementById('dayFilter');
+    const cards = [...document.querySelectorAll('.trip-card')];
+    const resultCount = document.getElementById('resultCount');
+    const emptyState = document.getElementById('emptyState');
+
+    function filterTrips() {
+      let visible = 0;
+      cards.forEach(card => {
+        const destinationOK = destinationFilter.value === 'all' || card.dataset.destination === destinationFilter.value;
+        const typeOK = typeFilter.value === 'all' || card.dataset.type === typeFilter.value;
+        const dayOK = dayFilter.value === 'all' || card.dataset.days === dayFilter.value;
+        const show = destinationOK && typeOK && dayOK;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      resultCount.textContent = `共 ${visible} 個行程`;
+      emptyState.style.display = visible ? 'none' : 'block';
+    }
+    [destinationFilter, typeFilter, dayFilter].forEach(el => el.addEventListener('change', filterTrips));
+    document.querySelectorAll('[data-quick-destination]').forEach(btn => btn.addEventListener('click', () => {
+      destinationFilter.value = btn.dataset.quickDestination;
+      typeFilter.value = 'all'; dayFilter.value = 'all'; filterTrips();
+      document.getElementById('destinations').scrollIntoView({behavior:'smooth'});
+    }));
+
+    const modal = document.getElementById('tripModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalLabel = document.getElementById('modalLabel');
+    const modalTitle = document.getElementById('modalTripTitle');
+    const modalContent = document.getElementById('modalContent');
+    function openTrip(key) {
+      const trip = tripDetails[key]; if (!trip) return;
+      modalImage.src = trip.image; modalImage.alt = trip.title; modalLabel.textContent = trip.label; modalTitle.textContent = trip.title;
+      modalContent.innerHTML = `
+        <div class="modal-summary"><div class="summary-box"><small>旅遊天數</small><strong>${trip.days}</strong></div><div class="summary-box"><small>服務類型</small><strong>${trip.type}</strong></div><div class="summary-box"><small>適合人數</small><strong>${trip.people}</strong></div></div>
+        <div class="detail-grid"><div><h3>行程特色</h3><p>${trip.intro}</p><h3>每日行程</h3><div class="timeline">${trip.itinerary.map(day => `<div class="day"><strong>${day[0]}</strong><p>${day[1]}</p></div>`).join('')}</div><h3>費用包含</h3><p>${trip.includes}</p><h3>費用不包含</h3><p>${trip.excludes}</p></div><aside><div class="detail-note"><h3>集合／接送資訊</h3><p>依旅客住宿與服務範圍個別確認，最終以行前通知為準。</p><h3>注意事項與取消規則</h3><p>${trip.note}</p></div></aside></div>
+        <div class="modal-actions"><small>價格與日期以專員最新回覆為準</small><button class="btn btn-primary modal-inquire">立即洽詢 <span class="arrow">→</span></button></div>`;
+      modal.classList.add('open'); document.body.classList.add('locked');
+      modalContent.querySelector('.modal-inquire').addEventListener('click', () => { closeModal(); prefillInquiry('套裝行程', trip.title); });
+    }
+    function closeModal() { modal.classList.remove('open'); document.body.classList.remove('locked'); }
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    const serviceInput = document.getElementById('serviceInput');
+    const destinationInput = document.getElementById('destinationInput');
+    function prefillInquiry(service, place) {
+      serviceInput.value = service;
+      if (place) destinationInput.value = place;
+      document.getElementById('inquiry').scrollIntoView({behavior:'smooth'});
+      setTimeout(() => place ? document.getElementById('date').focus() : destinationInput.focus(), 550);
+    }
+    document.querySelectorAll('.inquire-service').forEach(btn => btn.addEventListener('click', () => prefillInquiry(btn.dataset.service, btn.dataset.place)));
+
+    const form = document.getElementById('inquiryForm');
+    const success = document.getElementById('successMessage');
+    form.addEventListener('submit', e => { e.preventDefault(); if (!form.reportValidity()) return; form.style.display = 'none'; success.style.display = 'block'; });
+    document.getElementById('newInquiry').addEventListener('click', () => { form.reset(); form.style.display = 'block'; success.style.display = 'none'; document.getElementById('name').focus(); });
+
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => { const open = navLinks.classList.toggle('open'); menuBtn.textContent = open ? '×' : '☰'; menuBtn.setAttribute('aria-expanded', open); });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); menuBtn.textContent = '☰'; menuBtn.setAttribute('aria-expanded','false'); }));
+  </script>
+</body>
+</html>

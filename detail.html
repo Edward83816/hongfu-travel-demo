@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="catalog.css"><title>行程內容｜鴻富旅行社</title>
+</head>
+<body data-detail="true">
+  <div class="top-note">示範網站｜價格、日期與服務內容以專員最新回覆為準</div>
+  <header><div class="container nav"><a class="brand" href="index.html"><img class="brand-logo" src="assets/hongfu-logo.gif" alt="鴻富旅遊"></a><nav class="nav-links" id="navLinks"><a href="domestic.html">國內旅遊</a><a href="international.html">國外旅遊</a><a href="free-travel.html">四國自由行</a><a href="transport.html">接送包車</a><a class="nav-cta" href="index.html#inquiry">立即洽詢</a></nav><button class="menu-btn" id="menuBtn" aria-label="開啟選單">☰</button></div></header>
+  <main>
+    <section class="detail-hero"><div class="container"><div class="crumbs"><a href="index.html">首頁</a> ／ <a id="backLink" href="domestic.html">行程</a> ／ <span id="detailPlace"></span></div><h1 id="detailTitle"></h1><p id="detailSummary"></p></div></section>
+    <div class="container detail-layout">
+      <article class="detail-main">
+        <div class="detail-gallery" id="detailGallery"><img id="detailImage" src="" alt=""></div>
+        <h2>行程特色</h2><ul class="feature-list" id="detailFeatures"></ul>
+        <h2>行程安排</h2><div class="schedule" id="detailItinerary"></div>
+        <div class="include-grid"><section><h2>費用包含</h2><p id="detailIncludes"></p></section><section><h2>費用不包含</h2><p id="detailExcludes"></p></section></div>
+        <h2>集合資訊</h2><p id="detailMeeting"></p><h2>注意事項</h2><p id="detailNotice"></p>
+        <p class="source-link" id="sourceLinkWrap"><a id="sourceLink" href="#" target="_blank" rel="noopener">查看原商品頁內容</a></p>
+      </article>
+      <aside class="detail-side"><h2>行程摘要</h2><div class="detail-facts"><div class="fact"><small>目的地</small><strong id="detailPlace2"></strong></div><div class="fact"><small>類型</small><strong id="detailCategory"></strong></div><div class="fact"><small>天數／服務時間</small><strong id="detailDuration"></strong></div><div class="fact"><small>適合季節</small><strong id="detailSeason"></strong></div><div class="fact"><small>目前狀態</small><strong id="detailStatus"></strong></div></div><p class="notice">本頁為示範，未沿用舊價格與已過期日期。正式報價、出發日及取消規則需重新確認。</p><a class="btn" href="index.html#inquiry">立即洽詢</a></aside>
+    </div>
+  </main>
+  <footer><div class="container"><div class="copyright">© 2026 鴻富國際旅行社｜示範網站</div></div></footer>
+  <script src="travel-data.js"></script><script src="catalog.js"></script>
+</body></html>
